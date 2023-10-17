@@ -1,5 +1,11 @@
 REM   Script: BootCampSantander
-REM   Um banco de dados é um sistema que permite armazenar, organizar e recuperar informações de maneira eficiente. Ele é essencial para a gestão de dados em diversas aplicações, desde sistemas de gerenciamento de clientes até sistemas de rastreamento de estoque. Os bancos de dados são organizados em tabelas, permitindo o armazenamento de dados estruturados. Eles desempenham um papel fundamental na tomada de decisões informadas, análise de tendências e geração de relatórios. Os sistemas de gerenciamento de banco de dados (SGBDs) são usados para facilitar o uso e manutenção dos bancos de dados. Em resumo, bancos de dados são uma parte essencial da tecnologia da informação e da gestão de informações.
+REM   Um banco de dados é um sistema que permite armazenar, organizar e recuperar informações de maneira eficiente. 
+	Ele é essencial para a gestão de dados em diversas aplicações, desde sistemas de gerenciamento de clientes 
+	até sistemas de rastreamento de estoque. Os bancos de dados são organizados em tabelas, permitindo o armazenamento 
+	de dados estruturados. Eles desempenham um papel fundamental na tomada de decisões informadas, análise de tendências e 
+	geração de relatórios. Os sistemas de gerenciamento de banco de dados (SGBDs) são usados para facilitar o uso e 
+	manutenção dos bancos de dados. Em resumo, bancos de dados são uma parte essencial da tecnologia da informação e 
+	da gestão de informações.
 
 CREATE TABLE usuarios ( 
     id INT, 
@@ -57,7 +63,7 @@ select
     "DATA_NASNCIMENTO" 
 from "USUARIOS";
 
-    select *from USUARIOS;
+
 
 select  
     "ID", 
@@ -91,19 +97,6 @@ INSERT INTO reservas (id, id_usuario, id_destino, status, data)
 VALUES 
 (2,3,3, 'pendente','10-JUL-2023');
 
-select *from reservas;
-
-select *from usuarios;
-
-select *from usuarios;
-
-select *from usuarios;
-
-select *from usuarios;
-
-select *from usuarios;
-
-select *from usuarios;
 
 INSERT INTO usuarios VALUES (2,'Maria Santos', 'maria@gmail.com', 'Rua B, 456 -  Cidade Y, Estado Z', '22-AUG-1985');
 
@@ -126,11 +119,7 @@ INSERT INTO reservas VALUES (2,2,1,'05-AUG-2023','pendente');
 
 INSERT INTO reservas VALUES (3,3,3,'20-SEP-2023','cancelada');
 
-select *from reservas;
 
-select *from destinos;
-
-select *from usuarios;
 
 INSERT INTO usuarios VALUES (1,'Pamela Apolinario', 'pamela@gmail.com', 'Rua das rosas, 100 -  Bairro alto, araraquara/SP', '05-OCT-1992');
 
@@ -138,11 +127,7 @@ select *from destinos;
 
 INSERT INTO destinos VALUES (1,'praia das Tarturugas', 'Uma bela praia com areias brancas e mar cristalino');
 
-select *from destinos;
 
-select *from reservas;
-
-select *from usuarios;
 
 select *from usuarios  
     WHERE id = 1;
@@ -166,11 +151,6 @@ select *from usuarios ;
 UPDATE usuarios set id = 4 
 where email = 'pamela@gmail.com';
 
-select *from usuarios ;
-
-select *from usuarios ;
-
-select *from destinos;
 
 DELETE FROM destinos 
     WHERE nome = 'Praia do Rosa';
@@ -206,14 +186,6 @@ COMMENT ON COLUMN usuarios_nova.email  is 'Email do usuário';
 
 COMMENT ON COLUMN usuarios_nova.id  is 'ID do usuário';
 
-select * from usuarios;
-
-select * from usuarios;
-
-select * from usuarios;
-
-select * from usuarios;
-
 INSERT INTO  usuarios_nova (id,nome,email,endereço,data_nasncimento) 
     SELECT id, nome, email, endereço, data_nasncimento 
     FROM usuarios;
@@ -234,14 +206,6 @@ select * from usuarios;
 ALTER TABLE usuarios 
 MODIFY (endereço VARCHAR2(100)) ;
 
-select * from usuarios;
-
-select * from usuarios;
-
-select * from usuarios;
-
-select * from usuarios;
-
 ALTER TABLE usuarios  
 RENAME COLUMN ENDEREÇO TO  ENDERECO;
 
@@ -251,17 +215,13 @@ ADD rua VARCHAR(100);
 ALTER TABLE usuarios  
 ADD cidade VARCHAR(50);
 
-select * from usuarios;
-
 ALTER TABLE usuarios  
 ADD numero VARCHAR(10);
 
     ALTER TABLE usuarios  
 ADD estado VARCHAR(20);
 
-select * from usuarios;
 
-select * from usuarios;
 
 UPDATE usuarios  
 SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',1),',',-1), 
@@ -317,75 +277,6 @@ SELECT
     TRIM(REGEXP_SUBSTR(ENDERECO, '/(.+)$', 1, 1, NULL, 1)) AS ESTADO 
 FROM usuarios;
 
-select * from usuarios 
-;
-
-UPDATE usuarios 
-SET 
-    RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '^(.*?) nº', 1, 1, NULL, 1)), 
-    NUMERO = TRIM(REGEXP_SUBSTR(ENDERECO, 'nº (\d+) -', 1, 1, NULL, 1)), 
-    CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, '- (.+?)/', 1, 1, NULL, 1)), 
-    ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, '/(.+)$', 1, 1, NULL, 1));
-
-select * from usuarios 
-;
-
-UPDATE usuarios 
-SET 
-    RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '([^,]+)(,\s*\d+)?\s*-', 1, 1, NULL, 1)), 
-    NUMERO = TRIM(REGEXP_SUBSTR(ENDERECO, ' -\s*(\d+)', 1, 1, NULL, 1)), 
-    CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, ',\s*(.+?),', 1, 1, NULL, 1)), 
-    ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, ',\s*([^,]+)$', 1, 1, NULL, 1));
-
-select * from usuarios;
-
-UPDATE usuarios  
-SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',1),',',-1), 
-	numero = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',2),',',-1), 
-	cidade = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',3),',',-1), 
-	estado = SUBSTRING_INDEX(endereco,',',-1);
-
-UPDATE usuarios  
-SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',1),',',-1), 
-	numero = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',2),',',-1), 
-	cidade = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',3),',',-1), 
-	estado = SUBSTRING_INDEX(endereco,',',-1);
-
-UPDATE usuarios  
-SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',1),',',-1), 
-	numero = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',2),',',-1), 
-	cidade = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',3),',',-1), 
-	estado = SUBSTRING_INDEX(endereco,',',-1);
-
-UPDATE usuarios 
-SET 
-    RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '^(.*?) nº', 1, 1, NULL, 1)), 
-    NUMERO = TRIM(REGEXP_SUBSTR(ENDERECO, 'nº (\d+) -', 1, 1, NULL, 1)), 
-    CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, '- (.+?)/', 1, 1, NULL, 1)), 
-    ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, '/(.+)$', 1, 1, NULL, 1));
-
-select * from usuarios;
-
-UPDATE SUA_TABELA 
-SET 
-    RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '([^,]+)(,\s*\d+)?(\s*-\s*[^,]+,\s*[^,]+)?', 1, 1, NULL, 1)), 
-    NUMERO = CASE 
-        WHEN ENDERECO LIKE '%nº%' THEN TRIM(REGEXP_SUBSTR(ENDERECO, 'nº\s*(\d+)', 1, 1, NULL, 1)) 
-        ELSE NULL 
-    END, 
-    CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, '([^-]+)', 1, 1, NULL, 1)), 
-    ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, ',\s*([^,]+)$', 1, 1, NULL, 1));
-
-UPDATE SUA_TABELA 
-SET 
-    RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '([^,]+)(,\s*\d+)?(\s*-\s*[^,]+,\s*[^,]+)?', 1, 1, NULL, 1)), 
-    NUMERO = CASE 
-        WHEN ENDERECO LIKE '%nº%' THEN TRIM(REGEXP_SUBSTR(ENDERECO, 'nº\s*(\d+)', 1, 1, NULL, 1)) 
-        ELSE NULL 
-    END, 
-    CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, '([^-]+)', 1, 1, NULL, 1)), 
-    ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, ',\s*([^,]+)$', 1, 1, NULL, 1));
-
 UPDATE usuarios 
 SET 
     RUA = TRIM(REGEXP_SUBSTR(ENDERECO, '([^,]+)(,\s*\d+)?(\s*-\s*[^,]+,\s*[^,]+)?', 1, 1, NULL, 1)), 
@@ -448,9 +339,7 @@ SET
     CIDADE = TRIM(REGEXP_SUBSTR(ENDERECO, '([^-]+)', 1, 1, NULL, 1)), 
     ESTADO = TRIM(REGEXP_SUBSTR(ENDERECO, ',\s*([^,]+)$', 1, 1, NULL, 1));
 
-select * from usuarios;
 
-select * from usuarios;
 
 UPDATE usuarios 
 SET NUMERO = '456' -- Substitua 'SP' pelo valor desejado para o campo ESTADO 
